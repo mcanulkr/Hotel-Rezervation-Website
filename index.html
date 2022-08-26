@@ -1,0 +1,675 @@
+<html>
+    <head>
+        <title>Tatilweb</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <body class="signUpAndSignIn">
+        <link rel="stylesheet" type="text/css" href="signup.css">
+        <div id="signUpDiv" class="modal">
+        <span onclick="document.getElementById('signUpDiv').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <form class="modal-content">
+                <div class="container">
+                <h1>Kaydol</h1>
+                <p>Lütfen bir hesap oluşturun.</p>
+                <hr>
+                <label for="email"><b>Mail</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+            
+                <label for="psw"><b>Şifre</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+            
+                <label for="psw-repeat"><b>Şifre Tekrar</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                
+                <label>
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">Beni Hatırla
+                </label>
+            
+                <p> <a href="#" style="color:dodgerblue">Sözleşme</a>.</p>
+            
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn">Kaydol</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        <script>
+        // Get the modal
+        var modal = document.getElementById('signUpDiv');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+
+        <div id="signInDiv" class="modal">
+
+            <link type="stylesheet" href="signin.css">
+        
+            <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+        
+            <div class="container">
+                <label for="uname"><b>Kullanıcı Adı</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+        
+                <label for="psw"><b>Şifre</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                
+                <button type="submit">Giriş Yap</button>
+                <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+        
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="signIn" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+            </form>
+        </div>
+        
+        <script>
+        // Get the modal
+        var modal = document.getElementById('signInDiv');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+    </body>
+
+    <body>
+        <div>
+            <ul class="navigationBar">
+                <li class="navigationBarElement"><a onclick="document.getElementById('signInDiv').style.display='block'">Bize Ulaş</a></li>
+                <li class="navigationBarElement"><a onclick="document.getElementById('signUpDiv').style.display='block'">Kaydol</a></li>
+                <li class="navigationBarElement"><a onclick="document.getElementById('signInDiv').style.display='block'">Giriş Yap</a></li>
+                <div>
+                    <h3 class="navigationBarLogo">tatilweb</h3>
+                </div>
+            </ul>
+        </div>
+    
+        <div class="captions">
+            <img src="https://cdn-icons-png.flaticon.com/512/3226/3226225.png" style="height: 105px; width: 105px; ">
+            <div style="background-color: gray; width: 2px; height: 105px; margin-left: 20px; margin-right: 20px;"></div>
+            <div>
+                <label class="caption1" id="caption1">Tatil senin de hakkın !</label><br>
+                <label class="caption2" id="caption2">Sadece bir tık uzağında</label>
+            </div>
+        </div>
+
+        <div class="mainDiv">
+            <form style="display: flex; width: 100%;">
+                <div class="autocomplete" style="position: relative; display: inline-block; margin-right: 5px; width: 25%;">
+                    <input type="text" class="location" onclick="" id="searchCity" name="" placeholder="Nereye Gitmek İstersin ?">
+                </div>
+                <div style="display: flex; width: 40%; margin-right: 10px;">
+                    <input type="datetime-local" class = "dates" id="inputDate" value="Giriş Tarihi">
+                    <input type="datetime-local" class = "dates"  id="outputDate" name="" value="Çıkış Tarihi">
+                </div>
+                
+                <div style="width: 20%; margin-right: 5px;">
+                    <input type="text" class = "people" id="peopleNumber" onclick="peopleOpen()" value="1 Kişi | 1 Oda">
+                    <div class="enterPeopleInfo">
+                        <span class="peopleInfoPopUp" id="peoplePopUp">
+                            <div style="align-items: center;">
+                                <label class="peopleInfoLabel" style="line-height: 30px;">Yetişkin</label>
+                                <div style="float: right;">
+                                    <button type="button" class="addOrSub" onclick="addPeople('adult')">+</button>
+                                    <label id="adult" style="margin: 5px;">1</label>
+                                    <button type="button" class="addOrSub" onclick="subPeople('adult')">-</button>
+                                </div>
+                            </div><br>
+                            <div>
+                                <label class="peopleInfoLabel" style="line-height: 30px;">Çocuk</label>
+                                <div style="float: right;">
+                                    <button type="button" class="addOrSub" onclick="addPeople('child')">+</button>
+                                    <label id="child" style="margin: 5px;">0</label>
+                                    <button type="button" class="addOrSub" onclick="subPeople('child')">-</button>
+                                </div>
+                            </div><br>
+                            <div>
+                                <label class="peopleInfoLabel" style="line-height: 30px;">Bebek</label>
+                                <div style="float: right;">
+                                    <button type="button" class="addOrSub" onclick="addPeople('baby')">+</button>
+                                    <label id="baby" style="margin: 5px;">0</label>
+                                    <button type="button" class="addOrSub" onclick="subPeople('baby')">-</button>
+                                </div>
+                            </div><br>
+                            <div style="height: 1px; margin-top: 10px; background-color: rgb(187, 187, 187);"></div><br>
+                            <div style="align-items: center;">
+                                <label class="peopleInfoLabel" style="line-height: 30px;">Oda</label>
+                                <div style="float: right;">
+                                    <button type="button" class="addOrSub" onclick="addPeople('room')">+</button>
+                                    <label id="room" style="margin: 5px;">1</label>
+                                    <button type="button" class="addOrSub" onclick="subPeople('room')">-</button>
+                                </div>
+                            </div><br>
+                            <div style="margin-top: 10px;">
+                                <button type="button" class="cancelButton" style="width: 48%; height: 25px; font-family: inherit; font-size: 13px;">İptal</button>
+                                <button type="button" class="saveButton" onclick="savePeople()" style="width: 48%; height: 25px; font-family: inherit; font-size: 13px;">Kaydet</button>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div style="width: 15%;">
+                    <button type="button" class = "search"  id="search" onmouseover="changeBackground()" onmouseleave="oldBackground()">Ara</button>
+                </div>
+                
+                <script>
+                    document.getElementById("search").addEventListener("DOMContentLoaded", (e) => {
+                        document.getElementById("hotelList").style.display = "flex";
+                    });
+                </script>
+                <ul id="locationList" class="locationList"></ul>
+                <script>
+                      $( function() {
+                            $( "#inputDate" ).datepicker();
+                        } );
+                        $( function() {
+                            $( "#outputDate" ).datepicker();
+                        } );
+                </script>
+            </form>
+            <div id="hotelList" style="display: none;">
+                <ul class="listHotel" id="listHotel" style="padding-left: 0px;width: 75%;">
+                    <li id="listHotels" style="list-style: none; display: none;">
+                        <div class="listItem">
+                            <div>
+                                <img class="listImage" src="https://images.pexels.com/photos/2096983/pexels-photo-2096983.jpeg?cs=srgb&dl=pexels-julie-aagaard-2096983.jpg&fm=jpg">
+                            </div>
+                            <div class="listItemMiddle">
+                                <label class="label1">Hotel Su Kemer</label><br>
+                                <h3 class="label2">Antalya</h3><br>
+                                <label class="contents">0-10 yaş 1 çocuk ücretsiz</label><br>
+                                <div class="features">
+                                    <label>Kahvaltı</label>
+                                    <label>Herşey Dahil</label>
+                                    <label>Denize 0.2 km Mesafe</label>
+                                </div>
+                            </div>
+                            <div class="listItemRight">
+                                <label class="point">9.8 Puan</label><br>
+                                <label class="comments"> 88 yorum</label><br>
+                                <label class="price"> 2.175 TL</label><br>
+                                <label class="nightPrice">Gecelik 200 TL</label><br>
+                                <button class="rezervationButton" id="rezervationButton" onclick="openView('rezervationPopUp')">Rezervasyon Yap</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div style="width: 25%; margin-left: 15px; margin-top: 15px;">
+                    <div class="sırala">
+                        <h3 style="color: rgba(0, 0, 0, 0.74);">Sırala</h3>
+                        <button id="ascendPrice">Artan Fiyat</button><br>
+                        <button id="descandPrice">Azalan Fiyat</button><br>
+                        <button id="ascendPoint">Artan Puan</button><br>
+                        <button id="descandPoint" style="margin-bottom: 20px;">Azalan Puan</button>
+                    </div><br>
+                    <div class="filterDiv" >
+                        <label style="display: inline-block; font-weight: bold; font-size: 20px; margin-top: 20px; color: rgba(0, 0, 0, 0.74);">Filtrele</label><br>
+                        <div style="display: flex; margin-top: 20px; margin-bottom: 20px;">
+                            <input style="width: 45%; height: 30px; margin-right: 10px;" class="minTL" type="text" placeholder="Min TL">
+                            <label>-</label>
+                            <input style="width: 45%; height: 30px; margin-left: 10px;" class="maxTL" type="text" placeholder="Max TL">
+                        </div>
+                        <button type="button" class="dropdown-btn" onclick="openView('dropdown-container')">Puan</button>
+                        <div id="dropdown-container" class="dropdown-container" style="padding: 10px 10px; font-size: 12px; display: none; ">
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Hepsi</label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>1 ve üstü </label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>2 ve üstü </label><br>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>3 ve üstü </label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label></label>4 ve üstü </label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                            <label>5 ve üstü </label><br>
+                            </div>
+                        </div>
+                        <button onclick="openView('stayType')">Konaklama Tipi</button>
+                        <div id="stayType" style="padding: 10px 10px; font-size: 12px; display: none;">
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Oda Kahvaltı</label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Sadece Oda</label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Yarım Pansiyon</label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Herşey Dahil</label>
+                            </div>
+                        </div>
+                        <button onclick="openView('hotelType')">Otel Tipi</button>
+                        <div id="hotelType" style="padding: 10px 10px; font-size: 12px; display: none;">
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Apart</label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Tatil Köyü</label>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Pansiyon</label><br>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                <label>Butik</label><br>
+                            </div>
+                        </div>
+                        <button>Semt</button>
+                        <button style="background-color: teal; color: white; margin-bottom: 20px; margin-top: 15px;">Uygula</button>
+                    </div><br>
+                </div>
+            </div>
+            <div class="images" id="images">
+                <a class="prev" id="prev" onclick="">❮</a>
+                <a class="next" id="next" onclick="">❯</a>
+                <img class="imagesImg" id="imagesImgDetail1" src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?cs=srgb&dl=pexels-donald-tong-189296.jpg&fm=jpg">
+                <img class="imagesImg" id="imagesImgDetail2" src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?cs=srgb&dl=pexels-pixabay-261102.jpg&fm=jpg">
+                <img class="imagesImg" id="imagesImgDetail3" src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?cs=srgb&dl=pexels-pixabay-258154.jpg&fm=jpg">
+                <div style="text-align: center;">
+                    <span class="choosen" onclick=""></span>
+                    <span class="choosen" onclick=""></span>
+                    <span class="choosen" onclick=""></span>
+                </div>
+            </div>
+
+            <div class="hotelInfoPopUp" id="hotelInfoPopUp" style="display: none;">
+                <div class="rezervationForm" style="display: flex;">
+                    <div style="width: 45%; margin-right: 20px;">
+                        <img class="hotelInfoImg" id="hotelInfoImg1" src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?cs=srgb&dl=pexels-donald-tong-189296.jpg&fm=jpg">
+                        <img class="hotelInfoImg" id="hotelInfoImg2" src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?cs=srgb&dl=pexels-pixabay-261102.jpg&fm=jpg">
+                        <img class="hotelInfoImg" id="hotelInfoImg3" src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?cs=srgb&dl=pexels-pixabay-258154.jpg&fm=jpg">
+                        <a class="infoNext" id="infoNext" onclick="">❯</a>
+                        <a class="infoPrev" id="infoPrev" onclick="">❮</a>
+                        <div style="text-align: right; position: absolute; bottom: 54px; left: 39%;">
+                            <span class="hotelInfoChoosen"></span>
+                            <span class="hotelInfoChoosen"></span>
+                            <span class="hotelInfoChoosen"></span>
+                        </div>
+                    </div>
+                    <div style="width: 55%;">
+                        <div>
+                            <label class="hotelInfoName" id="hotelInfoName">Hotel Name</label>
+                            <button class="rezervationButton" id="hotelInfoPopUpClose" style="float: right;">X</button>
+                        </div>
+                        <img src="location.svg" width="15px">
+                        <label class="hotelInfoAddress" id="hotelInfoAddress">Adress</label><br>
+                        <div id="hotelInfoPopUpDiv">
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Açıklama</label>
+                                <div style="width: 100%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <p class="hotelInfoParagraph" id="hotelInfoParagraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                            <div style="width: 100%; display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Özellikler</label>
+                                <div style="width: 100%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/50/50004.png" width="15px">
+                                            <label id="pool" class="featureTxT">Havuz</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/2957/2957424.png" width="15px">
+                                            <label class="featureTxT">Mini Bar</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://www.svgrepo.com/show/390369/dumbell-fitness.svg" width="15px">
+                                            <label class="featureTxT">Fitness</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/272/272186.png" width="15px">
+                                            <label class="featureTxT">Restorant</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1391/1391843.png" width="15px">
+                                            <label class="featureTxT">Oda Servisi</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/159/159599.png" width="15px">
+                                            <label class="featureTxT">Wifi</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/25/25453.png" width="15px">
+                                            <label class="featureTxT">Telefon</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/7813/7813325.png" width="15px">
+                                            <label class="featureTxT">Şezlong</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://www.svgrepo.com/show/11408/television.svg" width="15px">
+                                            <label class="featureTxT">Televizyon</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://www.svgrepo.com/show/255431/game.svg" width="15px">
+                                            <label class="featureTxT">Çocuk Oyun Alanı</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/2502/2502273.png" width="15px">
+                                            <label class="featureTxT">Klima</label>
+                                        </td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/449/449401.png" width="15px">
+                                            <label class="featureTxT">Spa</label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-top: 10px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">İletişim</label>
+                                <div style="width: 100%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="https://www.svgrepo.com/show/331980/web.svg" width="15px">
+                                        <label class="featureTxT" id="contactWebSite">www.legend.com</label>
+                                    </td>
+                                    <td>
+                                        <img src="https://cdn-icons-png.flaticon.com/512/25/25453.png" width="15px">
+                                        <label class="featureTxT" id="contactPhone">+90 0242 245 78 98</label>
+                                    </td>
+                                    <td>
+                                        <img src="https://www.svgrepo.com/show/2784/mail.svg" width="15px">
+                                        <label class="featureTxT" id="contactMail">hotel@legend.com</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="display: flex; float: right; margin-top: 25px; align-items: center;">
+                                <label style="font-size: 15px; margin-right: 20px; font-weight: bold; color: rgba(0, 0, 0, 0.74); float: right;">Sen de bu ayrıcalıkarı deneyimlemek için</label>
+                                <button class="rezervationButton" id="hotelInfoButton" style="float: right;">Rezervasyon Yap</button>
+                            </div>
+                        </div>
+                        <div id="chooseRoom" style="display: none; padding-bottom: 130px; height: 100%;">
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Oda Seçimi</label>
+                                <div style="width: 82%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div style="margin-top: 15px; padding: 15px 20px; border: 1px solid rgb(187, 187, 187); border-radius: 10px; height: 50%;">
+                                <img id="room1Img" width="30%" height="100%" style="float: left; border-radius: 5px;" src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?cs=srgb&dl=pexels-pixabay-164595.jpg&fm=jpg">
+                                <div style="align-items: flex-start; float: left;  margin-left: 10px; padding: 30px 0px; ">
+                                    <label id="room1Feature" style="font-size: 15px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Tek Kişilik Oda</label><br>
+                                    <label id="room1Feature1" style="font-size: 14px; margin-top: 15px; margin-bottom: 15px;display: inline-block;">6 Yaş üstü çocuk ücretlidir</label><br>
+                                    <label id="room1Feature2" style="font-size: 12px;">İptal Edilemez</label>
+                                </div>
+                                <div style="float: right; padding: 25px 0px;">
+                                    <label id="room1Night" style="float: right; font-size: 10px; font-weight: bold;">2 gece için</label><br>
+                                    <label id="room1Price" style="float: right; font-weight: bolder; font-size: 25px; color: rgba(0, 0, 0, 0.74);">2550 TL</label><br>
+                                    <button id="chooseRoomButton1" style="float: right; margin-top: 10px;" class="rezervationButton">Odayı Seç</button>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; padding: 15px 20px; border: 1px solid rgb(187, 187, 187); border-radius: 10px; height: 50%;">
+                                <img id="room2Img" width="30%" height="100%" style="float: left; border-radius: 5px;" src="https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?cs=srgb&dl=pexels-pixabay-262048.jpg&fm=jpg">
+                                <div style="align-items: flex-start; float: left;  margin-left: 10px; padding: 30px 0px;">
+                                    <label id="room2Feature" style="font-size: 15px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Tek Kişilik Oda</label><br>
+                                    <label id="room2Feature1" style="font-size: 14px; margin-top: 15px; margin-bottom: 15px;display: inline-block;">6 Yaş üstü çocuk ücretlidir</label><br>
+                                    <label id="room2Feature2" style="font-size: 12px;">İptal Edilemez</label>
+                                </div>
+                                <div style="float: right; padding: 25px 0px;">
+                                    <label id="room2Night" style="float: right; font-size: 10px; font-weight: bold;">Toplam</label><br>
+                                    <label id="room2Price"  style="float: right; font-weight: bold; font-size: 25px; color: rgba(0, 0, 0, 0.74);">2550 TL</label><br>
+                                    <button id="chooseRoomButton2" style="float: right; margin-top: 10px;" class="rezervationButton">Odayı Seç</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hotelInfoPopUpRezervation" style="display: none;">
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Kişisel Bilgiler</label>
+                                <div style="width: 78%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <input id="identify" type="text" placeholder="TC Kimlik Numarası" style="width: 33%;">
+                                <input id="nameOrSubname" type="text" placeholder="İsim Soyisim" style="width: 33%;">
+                                <input id="born" type="text" placeholder="Doğum Tarihi" style="width: 32%;">
+                            </div>
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">İletişim Bilgileri</label>
+                                <div style="width: 76%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <input id="phone" type="text" placeholder="Telefon Numarası" style="width: 49%;">
+                                <input id="mail" type="text" placeholder="Mail" style="width: 49%;">
+                            </div>
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">1.Yetişkin (Opsiyonel)</label>
+                                <div style="width: 68%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div style="margin-top: 10px; display: flex;">
+                                <input type="text" placeholder="İsim" style="width: 40%; margin-right: 5px;">
+                                <input type="text" placeholder="Soyisim" style="width: 40%;">
+                                <div style="display: flex; width: 40%; align-items: center; margin-left: 20px;">
+                                    <input type="checkbox">
+                                    <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Kadın</label>
+                                    <input style="margin-left: 10px;" type="checkbox">
+                                    <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Erkek</label>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="width: 30%; font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">2.Yetişkin (Opsiyonel)</label>
+                                <div style="width: 68%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div style="margin-top: 10px; display: flex;">
+                                <input type="text" placeholder="İsim" style="width: 40%; margin-right: 5px;">
+                                <input type="text" placeholder="Soyisim" style="width: 40%;">
+                                <div style="display: flex; width: 40%; align-items: center; margin-left: 20px;">
+                                    <input type="checkbox">
+                                    <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Kadın</label>
+                                    <input style="margin-left: 10px;" type="checkbox">
+                                    <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Erkek</label>
+                                </div>
+                            </div>
+                            <div style="padding: 20px 0px;">
+                                <div style="display: flex; align-items: center;">
+                                    <input id="hotelInfoCheck" type="checkbox">
+                                    <a style="font-size: 10px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-left: 5px; ">Kişisel Verilerin Korunması</a>
+                                    <label style="font-size: 10px; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">ve</label>
+                                    <a style="font-size: 10px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">Gizlilik Politikası</a>
+                                    <label style="font-size: 10px; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">'nı okudum onaylıyorum</label>
+                                </div>
+                                <button id="goToPayPage" class="rezervationButton" style="float: right; padding: 5px 50px">Ödeme</button>
+                            </div>
+                        </div>
+                        <div id="payPage" style="display: none; width: 100%; margin-right: 0px;">
+                            <div style="width: 100%; border-radius: 10px; border: 1px solid rgb(179, 179, 179); padding: 20px; margin-top: 20px; display: inline-block;">
+                                <div style="height: 30px; width: 100%; background-color: teal; align-items: center; display: flex; border-radius: 5px 5px 5px 5px;">
+                                    <label style="font-size: 13px; color: white; font-weight: bold; margin-left: 10px;">Rezervasyon Bilgileri</label><br>
+                                </div>
+                                <div style="width: 100%;">
+                                    <div style="float: left; margin-top: 10px;">
+                                        <div style="float: left; margin-right: 20px;">
+                                            <label style="font-size: 20px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Giriş</label><br>
+                                            <label style="color: rgba(0, 0, 0, 0.74); font-size: 13px;" id="payInputDate"></label>
+                                        </div>
+                                        <div style="float: left;">
+                                            <label style="font-size: 20px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Çıkış</label><br>
+                                            <label style="color: rgba(0, 0, 0, 0.74); font-size: 13px;" id="payOutputDate"></label>
+                                        </div><br>
+                                        <div style="margin-top: 10px; display: inline-block;">
+                                            <div style="float: left; border: 1px solid gray; border-radius: 5px; padding: 0px 8px;">
+                                                <img src="https://www.svgrepo.com/show/221410/man.svg" height="11px">
+                                                <label style="color: rgba(0, 0, 0, 0.74); font-size: 11px;">2 Yetişkin</label>
+                                            </div>
+                                            <div style="float: left; border: 1px solid gray; border-radius: 5px; padding: 0px 8px; margin: 0px 10px;">
+                                                <img src="https://www.svgrepo.com/show/351884/child.svg" height="11px">
+                                                <label style="color: rgba(0, 0, 0, 0.74); font-size: 11px;">2 Çocuk</label>
+                                            </div>
+                                            <div style="float: left; border: 1px solid gray; border-radius: 5px; padding: 0px 8px;">
+                                                <img src="https://www.svgrepo.com/show/170983/baby.svg" height="11px">
+                                                <label style="color: rgba(0, 0, 0, 0.74); font-size: 11px;">0 Bebek</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: right; margin-top: 20px;">
+                                    <label id="completeNight" style="float: right; font-size: 14px; font-weight: bold; color: teal;">2 Gece için</label><br>
+                                    <label style="float: right; font-size: 13px; color: teal;">Toplam</label><br>
+                                    <label id="completePrice" style="float: right; font-size: 30px; font-weight: bold; color: teal;">2550 TL</label>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Kart Bilgileri</label>
+                                <div style="width: 78%; height: 1px; background-color: gray;"></div>
+                            </div>
+                            <div style="display: flex; margin-top: 20px;">
+                                <div style="width: 40%; margin-right: 15px;">
+                                    <label style="font-size: 12px; font-weight: bold; display: inline-block; color: rgba(0, 0, 0, 0.74);">Kart üzerindeki isim</label><br>
+                                    <input type="text" placeholder="Kart Üzerindeki İsim" style=" width: 100%; margin-top: 5px; margin-bottom: 15px;">
+                                </div>
+                                <div style="width: 60%;">
+                                    <label style="font-size: 12px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Kart Numarası</label><br>
+                                    <input type="text" placeholder="Kart Numarası" style="width: 100%; margin-top: 5px; margin-bottom: 15px;">
+                                </div>
+                            </div>
+                            <div>
+                                <div style="float: left;">
+                                    <label style="font-size: 12px; font-weight: bold; margin-bottom: 5px; display: inline-block; color: rgba(0, 0, 0, 0.74);">Son Kullanma Tarihi</label><br>
+                                    <select class="paySelect" name="" id="months" style="width: 60px;"></select>
+                                    <select class="paySelect" name="" id="years" style="width: 80px;"></select>
+                                </div>
+                                <div style="float: left; margin-left: 30px;">
+                                    <label style="font-size: 12px; font-weight: bold; display: inline-block; color: rgba(0, 0, 0, 0.74);">CVC</label><br>
+                                    <input type="text" placeholder="CVC" style="width:40%; margin-top: 5px; margin-bottom: 15px;">
+                                </div>
+                                <button id="completeRezervation" class="completeRezervation" style="float: right;">Rezervasyonu Tamamla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: rgb(85, 85, 85); font-size: 15px;">Senin için en iyi sonucu bulmaya çalışıyoruz</h3>
+        </div>
+
+        <div id="exampleCities" style="height: 620px; margin-left: 100px; margin-right: 100px; margin-top: 70px;">
+            <style>
+                .img{
+                    width: 32%;
+                    border-radius: 20px;
+                    transition: 0.5s;
+                }
+                .img:hover {
+                    box-shadow: 0 0 25px rgb(65, 65, 65);
+                    top: -10px;
+                }
+            </style>
+            
+            <div class="img" style=" padding: 20px 20px; height: 620px; background-image: url('https://images.pexels.com/photos/6053674/pexels-photo-6053674.jpeg?cs=srgb&dl=pexels-alperen-g%C3%BCm%C3%BC%C5%9Fsoy-6053674.jpg&fm=jpg'); background-size: cover; float: left;">
+                <label style="color: rgb(20, 20, 20); font-weight: bold;  font-size: 25px;">Antalya</label>
+            </div>
+
+            <div class="img" style="padding: 20px 20px; width: 32%; height:300px; background-image: url('https://images.pexels.com/photos/8006481/pexels-photo-8006481.jpeg?cs=srgb&dl=pexels-ugur-tandogan-8006481.jpg&fm=jpg'); margin-left: 20px; background-size: cover; float: right; ">
+                <label style="color: rgb(26, 26, 26); font-weight: bold; margin-top: 30px; font-size: 25px;">İstanbul</label>
+            </div>
+
+            <div class="img" style="padding: 20px 20px; width: 32%; height: 300px; background-image: url('https://images.pexels.com/photos/3889987/pexels-photo-3889987.jpeg?cs=srgb&dl=pexels-taryn-elliott-3889987.jpg&fm=jpg'); background-size: cover; margin-left: 20px; float: right;">
+                <label style="color: rgb(255, 255, 255); font-weight: bold; margin-top: 30px; font-size: 25px;">Kapadokya</label>
+            </div>
+
+            <div class="img" style="padding: 20px 20px; width: 66%; height: 300px; background-image: url('https://cdn.turkishairlines.com/m/3983e36a22f0b6a2/original/Travel-Guide-of-Ankara-via-Turkish-Airlines.jpg'); background-size: cover; margin-left: 20px; margin-top: 20px; float: right;"></divclass>
+                <label style="color: rgb(36, 36, 36); font-weight: bold; margin-top: 30px; font-size: 25px;">Ankara</label>
+            </div>            
+        </div>
+
+        <div style="margin-right: 100px; margin-left: 100px; display: flex; margin-top: 50px;">
+            <div style="justify-content: center; align-items: center; align-content: center; width: 25%; text-align: center;">
+                <img src="https://www.svgrepo.com/show/261322/credit-card-pay.svg" width="45px" style="margin-bottom: 10px;"><br>
+                <label >Güvenli Ödeme</label>
+            </div>
+            <div style="justify-content: center; align-items: center; align-content: center; width: 25%; text-align: center;">
+                <img src="https://www.svgrepo.com/show/66455/fast-forward.svg" width="45px" style="margin-bottom: 10px;"><br>
+                <label>Hızlı İşlem</label>
+            </div>
+            <div style="justify-content: center; align-items: center; align-content: center; width: 25%; text-align: center;">
+                <img src="https://www.svgrepo.com/show/287407/speech-bubble-comment.svg" width="45px" style="margin-bottom: 10px;"><br>
+                <label>Doğru Yorum</label>
+            </div>
+            <div style="justify-content: center; align-items: center; align-content: center; width: 25%; text-align: center;">
+                <img src="https://www.svgrepo.com/show/16102/calendar.svg" width="45px" style="margin-bottom: 10px;"><br>
+                <label>İdeal Tarih</label>
+            </div>
+        </div>
+
+        <div class="pill-nav">
+            <label style="font-family: Verdana, Geneva, Tahoma, sans-serif; margin-bottom: 10px; font-weight: bold; color: rgb(68, 68, 68);">Popüler Oteller</label><br>
+            <a class="active" href="#home">Antalya</a>
+            <a href="#news">Bodrum</a>
+            <a href="#contact">Marmaris</a>
+            <a href="#about">Fethiye</a>
+            <a href="#about">İstanbul</a>
+            <a href="#about">Ankara</a>
+            <a href="#about">Muğla</a><br>
+            <div style="display: flex;">
+                <img src="https://images.pexels.com/photos/594077/pexels-photo-594077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img style="margin-left: 15px;" src="https://images.pexels.com/photos/261388/pexels-photo-261388.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img style="margin-left: 15px;" src="https://images.pexels.com/photos/2964163/pexels-photo-2964163.jpeg?cs=srgb&dl=pexels-habi-dompil-2964163.jpg&fm=jpg">
+                <img style="margin-left: 15px;" src="https://images.pexels.com/photos/2096983/pexels-photo-2096983.jpeg?cs=srgb&dl=pexels-julie-aagaard-2096983.jpg&fm=jpg">
+                <img style="margin-left: 15px;" src="https://images.pexels.com/photos/2417862/pexels-photo-2417862.jpeg?cs=srgb&dl=pexels-roberto-nickson-2417862.jpg&fm=jpg">
+            </div>
+        </div>
+
+        <div style="display: flex; margin-right: 100px; margin-left: 100px; margin-top: 50px;">
+            <div style="width: 50%; ">
+                <h3>Neden bizi tercih etmelisin ?</h3>
+                <p style="font-size: 13px; color: rgb(56, 56, 56);">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+            <div style="width: 50%;">
+                <h3>Nereye gitmelisin ?</h3>
+                <p style="font-size: 13px; color: rgb(56, 56, 56);">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+        <div style="height: 300px;margin: -8px; background-color: teal; margin-top: 50px;">
+        </div>
+        <script type="module" src="firebase.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
