@@ -70,10 +70,19 @@ function oldBackground() {
 function popUpOpen() {
     myDatePicker.open();
 }
+
 function peopleOpen() {
-    var popup = document.getElementById("peoplePopUp").style.display = "block";
-    console.log("hi");
+    var popup = document.getElementById("peoplePopUp");
+    popup.style.display = "block";
+    popup.addEventListener("mouseover", (e) => {
+        window.onclick = function(event){
+            if(event.target == popup){
+                popup.style.display = "none";
+            }
+        }
+    })
 }
+
 function addPeople(id) {
     let button = document.getElementById(id);
     var number = parseInt(button.innerText) + 1;

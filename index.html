@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Tatilweb</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
+        
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -9,6 +9,7 @@
     </head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <body class="signUpAndSignIn">
+        <link rel="stylesheet" type="text/css" href="index.css">
         <link rel="stylesheet" type="text/css" href="signup.css">
         <div id="signUpDiv" class="modal">
         <span onclick="document.getElementById('signUpDiv').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -40,21 +41,19 @@
             </form>
         </div>
         <script>
-        // Get the modal
+
         var modal = document.getElementById('signUpDiv');
-        
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
+
         </script>
 
         <div id="signInDiv" class="modal">
 
             <link type="stylesheet" href="signin.css">
-        
             <form class="modal-content animate" action="/action_page.php" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -81,15 +80,14 @@
         </div>
         
         <script>
-        // Get the modal
+
         var modal = document.getElementById('signInDiv');
-        
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
+
         </script>
     </body>
 
@@ -119,12 +117,12 @@
                 <div class="autocomplete" style="position: relative; display: inline-block; margin-right: 5px; width: 25%;">
                     <input type="text" class="location" onclick="" id="searchCity" name="" placeholder="Nereye Gitmek İstersin ?">
                 </div>
-                <div style="display: flex; width: 40%; margin-right: 10px;">
-                    <input type="datetime-local" class = "dates" id="inputDate" value="Giriş Tarihi">
-                    <input type="datetime-local" class = "dates"  id="outputDate" name="" value="Çıkış Tarihi">
+                <div style="display: flex; width: 40%;">
+                    <input type="text" class = "dates" onfocus="(this.type='date')" placeholder="Giriş Tarihi" id="inputDate" value="Giriş Tarihi">
+                    <input type="text" class = "dates" onfocus="(this.type='date')" placeholder="Çıkış Tarihi" id="outputDate" name="" value="Çıkış Tarihi">
                 </div>
                 
-                <div style="width: 20%; margin-right: 5px;">
+                <div style="width: 20%;">
                     <input type="text" class = "people" id="peopleNumber" onclick="peopleOpen()" value="1 Kişi | 1 Oda">
                     <div class="enterPeopleInfo">
                         <span class="peopleInfoPopUp" id="peoplePopUp">
@@ -168,23 +166,23 @@
                         </span>
                     </div>
                 </div>
-                <div style="width: 15%;">
+                <div style="width: 15%; margin-left: 5px;">
                     <button type="button" class = "search"  id="search" onmouseover="changeBackground()" onmouseleave="oldBackground()">Ara</button>
                 </div>
                 
                 <script>
-                    document.getElementById("search").addEventListener("DOMContentLoaded", (e) => {
+                   /* document.getElementById("search").addEventListener("DOMContentLoaded", (e) => {
                         document.getElementById("hotelList").style.display = "flex";
-                    });
+                    });*/
                 </script>
                 <ul id="locationList" class="locationList"></ul>
                 <script>
-                      $( function() {
+                     /* $( function() {
                             $( "#inputDate" ).datepicker();
                         } );
                         $( function() {
                             $( "#outputDate" ).datepicker();
-                        } );
+                        } );*/
                 </script>
             </form>
             <div id="hotelList" style="display: none;">
@@ -314,7 +312,9 @@
 
             <div class="hotelInfoPopUp" id="hotelInfoPopUp" style="display: none;">
                 <div class="rezervationForm" style="display: flex;">
+                    <button class="rezervationCancelButton" id="hotelInfoPopUpClose" style="float: right;">X</button>
                     <div style="width: 45%; margin-right: 20px;">
+                        <label id="hotelNameOnImg" style="position: absolute; margin: 20px; background-color: rgba(22, 22, 22, 0.692); padding: 5px 20px; border-radius: 20px; color: white; display: none;">Hotel Name</label>
                         <img class="hotelInfoImg" id="hotelInfoImg1" src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?cs=srgb&dl=pexels-donald-tong-189296.jpg&fm=jpg">
                         <img class="hotelInfoImg" id="hotelInfoImg2" src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?cs=srgb&dl=pexels-pixabay-261102.jpg&fm=jpg">
                         <img class="hotelInfoImg" id="hotelInfoImg3" src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?cs=srgb&dl=pexels-pixabay-258154.jpg&fm=jpg">
@@ -327,12 +327,13 @@
                         </div>
                     </div>
                     <div style="width: 55%;">
-                        <div>
-                            <label class="hotelInfoName" id="hotelInfoName">Hotel Name</label>
-                            <button class="rezervationButton" id="hotelInfoPopUpClose" style="float: right;">X</button>
+                        <div id="hotelInfoPopUpName">
+                            <div>
+                                <label class="hotelInfoName" id="hotelInfoName">Hotel Name</label>
+                            </div>
+                            <img src="location.svg" width="15px">
+                            <label class="hotelInfoAddress" id="hotelInfoAddress">Adress</label><br>
                         </div>
-                        <img src="location.svg" width="15px">
-                        <label class="hotelInfoAddress" id="hotelInfoAddress">Adress</label><br>
                         <div id="hotelInfoPopUpDiv">
                             <div style="display: flex; align-items: center; margin-top: 20px;">
                                 <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Açıklama</label>
@@ -427,11 +428,11 @@
                             </div>
                         </div>
                         <div id="chooseRoom" style="display: none; padding-bottom: 130px; height: 100%;">
-                            <div style="display: flex; align-items: center; margin-top: 20px;">
-                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Oda Seçimi</label>
-                                <div style="width: 82%; height: 1px; background-color: gray;"></div>
+                            <div style="display: flex; align-items: center; margin-top: 8px; margin-right: 60px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">ODA SEÇİMİ</label>
+                                <div style="width: 78%; height: 1px; background-color: gray;"></div>
                             </div>
-                            <div style="margin-top: 15px; padding: 15px 20px; border: 1px solid rgb(187, 187, 187); border-radius: 10px; height: 50%;">
+                            <div style="margin-top: 30px; padding: 15px 20px; border: 1px solid rgb(187, 187, 187); border-radius: 10px; height: 50%;">
                                 <img id="room1Img" width="30%" height="100%" style="float: left; border-radius: 5px;" src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?cs=srgb&dl=pexels-pixabay-164595.jpg&fm=jpg">
                                 <div style="align-items: flex-start; float: left;  margin-left: 10px; padding: 30px 0px; ">
                                     <label id="room1Feature" style="font-size: 15px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Tek Kişilik Oda</label><br>
@@ -459,30 +460,30 @@
                             </div>
                         </div>
                         <div id="hotelInfoPopUpRezervation" style="display: none;">
-                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                            <div style="display: flex; align-items: center; margin-top: 8px; margin-right: 60px;">
                                 <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">Kişisel Bilgiler</label>
-                                <div style="width: 78%; height: 1px; background-color: gray;"></div>
+                                <div style="width: 77%; height: 1px; background-color: gray;"></div>
                             </div>
                             <div style="margin-top: 20px;">
-                                <input id="identify" type="text" placeholder="TC Kimlik Numarası" style="width: 33%;">
-                                <input id="nameOrSubname" type="text" placeholder="İsim Soyisim" style="width: 33%;">
-                                <input id="born" type="text" placeholder="Doğum Tarihi" style="width: 32%;">
+                                <input class="popUpTextInput" id="identify" type="text" placeholder="TC Kimlik Numarası" style="width: 33%;">
+                                <input class="popUpTextInput" id="nameOrSubname" type="text" placeholder="İsim Soyisim" style="width: 33%;">
+                                <input class="popUpTextInput" id="born" type="text" placeholder="Doğum Tarihi" style="width: 32%;">
                             </div>
-                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                            <div style="display: flex; align-items: center; margin-top: 30px;">
                                 <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">İletişim Bilgileri</label>
                                 <div style="width: 76%; height: 1px; background-color: gray;"></div>
                             </div>
                             <div style="margin-top: 20px;">
-                                <input id="phone" type="text" placeholder="Telefon Numarası" style="width: 49%;">
-                                <input id="mail" type="text" placeholder="Mail" style="width: 49%;">
+                                <input class="popUpTextInput" id="phone" type="text" placeholder="Telefon Numarası" style="width: 49%;">
+                                <input class="popUpTextInput" id="mail" type="text" placeholder="Mail" style="width: 49%;">
                             </div>
-                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                            <div style="display: flex; align-items: center; margin-top: 30px;">
                                 <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">1.Yetişkin (Opsiyonel)</label>
                                 <div style="width: 68%; height: 1px; background-color: gray;"></div>
                             </div>
                             <div style="margin-top: 10px; display: flex;">
-                                <input type="text" placeholder="İsim" style="width: 40%; margin-right: 5px;">
-                                <input type="text" placeholder="Soyisim" style="width: 40%;">
+                                <input class="popUpTextInput" type="text" placeholder="İsim" style="width: 40%; margin-right: 5px;">
+                                <input class="popUpTextInput" type="text" placeholder="Soyisim" style="width: 40%;">
                                 <div style="display: flex; width: 40%; align-items: center; margin-left: 20px;">
                                     <input type="checkbox">
                                     <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Kadın</label>
@@ -490,13 +491,13 @@
                                     <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Erkek</label>
                                 </div>
                             </div>
-                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                            <div style="display: flex; align-items: center; margin-top: 30px;">
                                 <label style="width: 30%; font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">2.Yetişkin (Opsiyonel)</label>
                                 <div style="width: 68%; height: 1px; background-color: gray;"></div>
                             </div>
                             <div style="margin-top: 10px; display: flex;">
-                                <input type="text" placeholder="İsim" style="width: 40%; margin-right: 5px;">
-                                <input type="text" placeholder="Soyisim" style="width: 40%;">
+                                <input  class="popUpTextInput" type="text" placeholder="İsim" style="width: 40%; margin-right: 5px;">
+                                <input  class="popUpTextInput" type="text" placeholder="Soyisim" style="width: 40%;">
                                 <div style="display: flex; width: 40%; align-items: center; margin-left: 20px;">
                                     <input type="checkbox">
                                     <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74);">Kadın</label>
@@ -507,15 +508,19 @@
                             <div style="padding: 20px 0px;">
                                 <div style="display: flex; align-items: center;">
                                     <input id="hotelInfoCheck" type="checkbox">
-                                    <a style="font-size: 10px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-left: 5px; ">Kişisel Verilerin Korunması</a>
-                                    <label style="font-size: 10px; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">ve</label>
-                                    <a style="font-size: 10px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">Gizlilik Politikası</a>
-                                    <label style="font-size: 10px; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">'nı okudum onaylıyorum</label>
+                                    <a style="font-size: 13px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-left: 5px; ">Kişisel Verilerin Korunması</a>
+                                    <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">ve</label>
+                                    <a style="font-size: 13px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">Gizlilik Politikası</a>
+                                    <label style="font-size: 13px; color: rgba(0, 0, 0, 0.74); margin-left: 5px;">'nı okudum onaylıyorum</label>
                                 </div>
-                                <button id="goToPayPage" class="rezervationButton" style="float: right; padding: 5px 50px">Ödeme</button>
                             </div>
+                            <button id="goToPayPage" class="rezervationButton" style="float: right; padding: 5px 50px">Ödeme</button>
                         </div>
                         <div id="payPage" style="display: none; width: 100%; margin-right: 0px;">
+                            <div style="display: flex; align-items: center; margin-top: 8px; margin-right: 60px;">
+                                <label style="font-size: 14px; font-weight: bold; color: rgba(0, 0, 0, 0.74); margin-right: 15px;">ÖDEME EKRANI</label>
+                                <div style="width: 74%; height: 1px; background-color: gray;"></div>
+                            </div>
                             <div style="width: 100%; border-radius: 10px; border: 1px solid rgb(179, 179, 179); padding: 20px; margin-top: 20px; display: inline-block;">
                                 <div style="height: 30px; width: 100%; background-color: teal; align-items: center; display: flex; border-radius: 5px 5px 5px 5px;">
                                     <label style="font-size: 13px; color: white; font-weight: bold; margin-left: 10px;">Rezervasyon Bilgileri</label><br>
@@ -559,11 +564,11 @@
                             <div style="display: flex; margin-top: 20px;">
                                 <div style="width: 40%; margin-right: 15px;">
                                     <label style="font-size: 12px; font-weight: bold; display: inline-block; color: rgba(0, 0, 0, 0.74);">Kart üzerindeki isim</label><br>
-                                    <input type="text" placeholder="Kart Üzerindeki İsim" style=" width: 100%; margin-top: 5px; margin-bottom: 15px;">
+                                    <input class="popUpTextInput" type="text" placeholder="Kart Üzerindeki İsim" style=" width: 100%; margin-top: 5px; margin-bottom: 15px;">
                                 </div>
                                 <div style="width: 60%;">
                                     <label style="font-size: 12px; font-weight: bold; color: rgba(0, 0, 0, 0.74);">Kart Numarası</label><br>
-                                    <input type="text" placeholder="Kart Numarası" style="width: 100%; margin-top: 5px; margin-bottom: 15px;">
+                                    <input class="popUpTextInput" type="text" placeholder="Kart Numarası" style="width: 100%; margin-top: 5px; margin-bottom: 15px;">
                                 </div>
                             </div>
                             <div>
@@ -574,7 +579,7 @@
                                 </div>
                                 <div style="float: left; margin-left: 30px;">
                                     <label style="font-size: 12px; font-weight: bold; display: inline-block; color: rgba(0, 0, 0, 0.74);">CVC</label><br>
-                                    <input type="text" placeholder="CVC" style="width:40%; margin-top: 5px; margin-bottom: 15px;">
+                                    <input class="popUpTextInput" type="text" placeholder="CVC" style="width:40%; margin-top: 5px; margin-bottom: 15px;">
                                 </div>
                                 <button id="completeRezervation" class="completeRezervation" style="float: right;">Rezervasyonu Tamamla</button>
                             </div>

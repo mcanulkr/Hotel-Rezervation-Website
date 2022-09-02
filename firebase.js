@@ -2,7 +2,12 @@ import {initializeApp} from "https://www.gstatic.com/firebasejs/9.9.2/firebase-a
 import { getFirestore , collection , addDoc, setDoc, doc, getDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  //Your Firebase İnfo
+  apiKey: "AIzaSyDUOuHtcDPgxlXtFcDwPRN8fZc7XsGZr38",
+  authDomain: "talya-6f8d0.firebaseapp.com",
+  projectId: "talya-6f8d0",
+  storageBucket: "talya-6f8d0.appspot.com",
+  messagingSenderId: "1071645148785",
+  appId: "1:1071645148785:web:1118d533821fe7e8f77dd0"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -168,18 +173,11 @@ document.getElementById("hotelInfoPopUpClose").addEventListener("click",(e)=> {
 })
 
 function getTotalNight(){
-  let createdInputDate = createDate(inputDate);
-  let createdOutputDate = createDate(outputDate);
+  let createdInputDate = new Date(inputDate.value);
+  let createdOutputDate = new Date(outputDate.value);
   let totalNight = ((createdOutputDate-createdInputDate) / (24*3600*1000)); 
   console.log(totalNight);
   return totalNight;
-}
-
-function createDate(date){
-  let month = date.value.slice(0,2);
-  let day = date.value.slice(3,5);
-  let year = date.value.slice(6,10);
-  return new Date(`${year}-${month}-${day}`);
 }
 
 function createItem(uuid,totalPaid){
@@ -291,8 +289,9 @@ function setRezervationPopUp(hotelName, address){
 
 function openImage(){
   document.getElementById("images").style.display = "flex";
-  showSlides(slideIndex)
+  showSlides(slideIndex);
 }
+
 
 document.getElementById("goToPayPage").addEventListener("click",(e)=>{
   let checkBox = document.getElementById("hotelInfoCheck")
@@ -387,6 +386,9 @@ function openHotelInfoPopUp(uuid,totalPaid){
   document.getElementById("hotelInfoButton").addEventListener("click",(e)=> {
     document.getElementById("hotelInfoPopUpDiv").style.display = "none";
     document.getElementById("chooseRoom").style.display = "block";
+    document.getElementById("hotelInfoPopUpName").style.display = "none";
+    document.getElementById("hotelNameOnImg").style.display = "block";
+
     docRef.then((doc) => {
       let hotelName = doc.data().name;
       let address = doc.data().address;
@@ -417,7 +419,6 @@ function openHotelInfoPopUp(uuid,totalPaid){
   })  
   
 }
-
 
 function getDate(date){
   let monthName = "";
@@ -469,6 +470,7 @@ function getDate(date){
 function setHotelInfoPopUp(hotelName,address){
   document.getElementById("hotelInfoName").innerHTML = hotelName;
   document.getElementById("hotelInfoAddress").innerHTML = address;
+  document.getElementById("hotelNameOnImg").innerHTML = hotelName;
 }
 
 document.getElementById("infoNext").addEventListener("click",(e)=>{
