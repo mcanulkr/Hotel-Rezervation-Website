@@ -1,4 +1,4 @@
 # Hotel Rezervation Website
-![Ekran Alıntısı](https://user-images.githubusercontent.com/69786868/190232891-e219fc91-e468-45d4-92ff-efa1db711c58.PNG)
+![screencapture-127-0-0-1-5500-index-html-2022-09-21-20_58_07](https://user-images.githubusercontent.com/69786868/191578777-cfd5eb30-1646-4327-a447-e96c31d39d7e.png)
 
 The hotel reservation page is the page that lists the searched hotels and selects the rooms. It includes:
